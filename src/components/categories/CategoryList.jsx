@@ -24,7 +24,6 @@ const CategoryList = () => {
       <Badge color="danger" className="px-2 py-1 my-2 w-100">
         <h3>Category Name: {currentCategory.CategoryName}</h3>
       </Badge>
-      {console.log(categories)}
       <ListGroup>
         {categories.map((category) => (
           <ListGroupItem

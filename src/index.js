@@ -4,6 +4,7 @@ import App from "./components/root/App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ConfigureStore from "./redux/reducers/ConfigureStore";
 import { Provider } from "react-redux";
+import 'alertifyjs/build/css/alertify.min.css'
 
 const store = ConfigureStore();
 console.log(store.getState())
