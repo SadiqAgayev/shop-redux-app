@@ -19,7 +19,7 @@ function Navi(args) {
   return (
     <div>
       <Navbar {...args} color="dark" light={true} dark={true} expand="sm">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarBrand href="/">AghayevShop</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>

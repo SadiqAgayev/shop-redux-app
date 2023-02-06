@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as CartAction from './../../redux/actions/CartAction'
+import * as CartAction from "./../../redux/actions/CartAction";
 import {
   UncontrolledDropdown,
   DropdownToggle,
@@ -10,16 +10,17 @@ import {
   NavLink,
   Badge,
 } from "reactstrap";
-import alertify from 'alertifyjs'
+import alertify from "alertifyjs";
+import { Link } from "react-router-dom";
 
 const CartSummary = () => {
   const cart = useSelector((state) => state.CartReducer);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const removeFromCart = (product) => {
-    dispatch(CartAction.removeFromCart(product))
-    alertify.error(`${product.productName} removed from cart`)
-  }
+    dispatch(CartAction.removeFromCart(product));
+    alertify.error(`${product.productName} removed from cart`);
+  };
 
   const renderEmpty = () => {
     return (
@@ -38,7 +39,11 @@ const CartSummary = () => {
         <DropdownMenu>
           {cart.map((productItem) => (
             <DropdownItem key={productItem.product.id}>
-              <Badge color="danger" className="me-2" onClick={() => removeFromCart(productItem.product)}>
+              <Badge
+                color="danger"
+                className="me-2"
+                onClick={() => removeFromCart(productItem.product)}
+              >
                 X
               </Badge>
               {productItem.product.productName}
@@ -48,7 +53,9 @@ const CartSummary = () => {
             </DropdownItem>
           ))}
           <DropdownItem divider />
-          <DropdownItem>Go To Cart</DropdownItem>
+          <DropdownItem>
+            <Link to="/cartDetail">Go To Cart</Link>
+          </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
     );
