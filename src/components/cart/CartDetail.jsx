@@ -16,7 +16,7 @@ const CartDetail = () => {
   return (
     <div>
       <Badge color="warning" className="px-2 py-1 my-2 w-100 text-black">
-        <h3>Cart Detail</h3>
+        <h3>Cart Details</h3>
       </Badge>
 
       <Table dark hover responsive>

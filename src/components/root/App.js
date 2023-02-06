@@ -6,7 +6,7 @@ import Dashboard from "./Dashboard";
 
 function App() {
   return (
-    <div>
+    <div style={{backgroundColor:"#dff0e3"}}>
       <Navi />
       <Container>
         <Routes>

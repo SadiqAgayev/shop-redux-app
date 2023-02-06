@@ -54,7 +54,9 @@ const CartSummary = () => {
           ))}
           <DropdownItem divider />
           <DropdownItem>
-            <Link to="/cartDetail">Go To Cart</Link>
+            <Link to="/cartDetail" style={{ textDecoration: "none" }}>
+              Go To Cart
+            </Link>
           </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>

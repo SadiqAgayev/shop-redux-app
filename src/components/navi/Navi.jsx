@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Collapse,
   Navbar,
@@ -7,9 +7,8 @@ import {
   Nav,
   NavItem,
   NavLink,
-  NavbarText,
-} from 'reactstrap';
-import CartSummary from '../cart/CartSummary';
+} from "reactstrap";
+import CartSummary from "../cart/CartSummary";
 
 function Navi(args) {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,22 +17,25 @@ function Navi(args) {
 
   return (
     <div>
-      <Navbar {...args} color="dark" light={true} dark={true} expand="sm">
+      <Navbar
+        {...args}
+        color="dark"
+        light={true}
+        dark={true}
+        expand="sm"
+        style={{ padding: "5px 10%" }}
+      >
         <NavbarBrand href="/">AghayevShop</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="me-auto" navbar>
+          <Nav className="ms-auto" navbar>
+            <CartSummary />
             <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
+              <NavLink href="https://github.com/SadiqAgayev" target="_blank">
                 GitHub
               </NavLink>
             </NavItem>
-            <CartSummary />
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
         </Collapse>
       </Navbar>
     </div>

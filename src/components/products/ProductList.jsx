@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Badge, Button, Table } from "reactstrap";
 import * as ProductActions from "./../../redux/actions/ProductActions";
 import * as CartAction from "./../../redux/actions/CartAction";
-import alertify from 'alertifyjs'
+import alertify from "alertifyjs";
 
 const ProductList = () => {
   const products = useSelector((state) => state.ProductListReducer);
@@ -17,14 +17,38 @@ const ProductList = () => {
 
   const addToCart = (product) => {
     dispatch(CartAction.addToCart({ product, quantity: 1 }));
-    alertify.success(`${product.productName} added to cart`)
+    addToStorage(product);
+    alertify.success(`${product.productName} added to cart`);
   };
 
+  const addToStorage = (newCartItem) => {
+    let cartItem;
+
+    if (localStorage.getItem("cartItem") === null) {
+      cartItem = [];
+    } else {
+      cartItem = JSON.parse(localStorage.getItem("cartItem"));
+    }
+    
+    let addedItem = cartItem.find(ci => ci.id === newCartItem.id)
+    if(addedItem) {
+      cartItem = cartItem.map(item => {
+        if (item.id === addedItem.id) {
+          return { ...addedItem, quantity: addedItem.quantity + 1 }
+        }
+        return item
+      })
+    }  else {
+      cartItem = [...cartItem, {...newCartItem,quantity:1}]
+    }
+
+    localStorage.setItem("cartItem", JSON.stringify(cartItem));
+  };
 
   return (
     <div>
       <Badge color="primary" className="px-2 py-1 my-2 w-100">
-        <h3>Product</h3>
+        <h3>Products</h3>
       </Badge>
 
       <Table dark hover responsive>
@@ -47,7 +71,9 @@ const ProductList = () => {
               <td>{product.unitPrice}</td>
               <td>{product.unitsInStock}</td>
               <td>
-                <Button color="danger" onClick={() => addToCart(product)}>Add</Button>
+                <Button color="success" onClick={() => addToCart(product)}>
+                  Add
+                </Button>
               </td>
             </tr>
           ))}

@@ -22,7 +22,7 @@ const CategoryList = () => {
   return (
     <div>
       <Badge color="danger" className="px-2 py-1 my-2 w-100">
-        <h3>Category Name: {currentCategory.CategoryName}</h3>
+        <h3>Categories</h3>
       </Badge>
       <ListGroup>
         {categories.map((category) => (
@@ -30,6 +30,7 @@ const CategoryList = () => {
             key={category.id}
             active={category.id === currentCategory.id}
             onClick={() => selected(category)}
+            style={{cursor:"pointer"}}
           >
             {category.categoryName}
           </ListGroupItem>
