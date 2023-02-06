@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import 'alertifyjs/build/css/alertify.min.css'
 
 const store = ConfigureStore();
-console.log(store.getState())
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

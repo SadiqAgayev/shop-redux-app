@@ -1,5 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import * as CartAction from './../../redux/actions/CartAction'
 import {
   UncontrolledDropdown,
   DropdownToggle,
@@ -9,10 +10,16 @@ import {
   NavLink,
   Badge,
 } from "reactstrap";
+import alertify from 'alertifyjs'
 
 const CartSummary = () => {
   const cart = useSelector((state) => state.CartReducer);
-  console.log(cart);
+  const dispatch = useDispatch()
+
+  const removeFromCart = (product) => {
+    dispatch(CartAction.removeFromCart(product))
+    alertify.error(`${product.productName} removed from cart`)
+  }
 
   const renderEmpty = () => {
     return (
@@ -30,8 +37,8 @@ const CartSummary = () => {
         </DropdownToggle>
         <DropdownMenu>
           {cart.map((productItem) => (
-            <DropdownItem>
-              <Badge color="danger" className="me-2">
+            <DropdownItem key={productItem.product.id}>
+              <Badge color="danger" className="me-2" onClick={() => removeFromCart(productItem.product)}>
                 X
               </Badge>
               {productItem.product.productName}

@@ -7,7 +7,6 @@ import alertify from 'alertifyjs'
 
 const ProductList = () => {
   const products = useSelector((state) => state.ProductListReducer);
-  const cart = useSelector((state) => state.CartReducer);
 
   const dispatch = useDispatch();
 
@@ -21,7 +20,6 @@ const ProductList = () => {
     alertify.success(`${product.productName} added to cart`)
   };
 
-  console.log(cart)
 
   return (
     <div>
